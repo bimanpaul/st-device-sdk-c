@@ -1,6 +1,6 @@
 /* ***************************************************************************
  *
- * Copyright 2019 Samsung Electronics All Rights Reserved.
+ * Copyright 2019-2020 Samsung Electronics All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,23 +16,19 @@
  *
  ****************************************************************************/
 
-#ifndef _IOT_CRYPTO_INTERNAL_H_
-#define _IOT_CRYPTO_INTERNAL_H_
-
-#ifdef __cplusplus
-extern "C" {
+#include "iot_bsp_random.h"
+#ifdef CONFIG_ARCH_BOARD_ESP32_FAMILY
+extern uint32_t esp_random(void);
+#else
+#include <stdlib.h>
 #endif
 
-#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_RSA)
-extern const iot_crypto_pk_funcs_t iot_crypto_pk_rsa_funcs;
+unsigned int iot_bsp_random()
+{
+#ifdef CONFIG_ARCH_BOARD_ESP32_FAMILY
+	return esp_random();
+#else
+	srand(time(0));
+	return rand();
 #endif
-
-//#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_ED25519)
-extern const iot_crypto_pk_funcs_t iot_crypto_pk_ed25519_funcs;
-//#endif
-
-#ifdef __cplusplus
 }
-#endif
-
-#endif /* _IOT_CRYPTO_INTERNAL_H_ */

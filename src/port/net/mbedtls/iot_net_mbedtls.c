@@ -21,7 +21,8 @@
 #include <string.h>
 #include <errno.h>
 #include <sys/time.h>
-#include <sys/socket.h>
+//#include <sys/socket.h>
+#include "lwip/sockets.h"
 
 #include "iot_main.h"
 #include "iot_debug.h"

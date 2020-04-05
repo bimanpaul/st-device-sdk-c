@@ -20,6 +20,11 @@
 #define _IOT_OS_UTIL_H_
 #include <stdlib.h>
 
+#ifdef  __cplusplus
+extern "C"
+{
+#endif
+
 typedef void *iot_os_thread;
 typedef void iot_os_queue;
 typedef void iot_os_eventgroup;
@@ -95,8 +100,12 @@ void iot_os_thread_yield();
  *	If queue was not created, NULL is returned.
  *
  */
+//#ifdef __MBED__
+//
+//#else
 iot_os_queue* iot_os_queue_create(int queue_length, int item_size);
-
+//#define iot_os_queue_create1(len, type) iot_os_queue_create(len, sizeof(type))
+//#endif
 /**
  * @brief	reset queue
  *
@@ -151,7 +160,7 @@ int iot_os_queue_send(iot_os_queue* queue_handle, void * data, unsigned int wait
  *	otherwise :  fail
  *
  */
-int iot_os_queue_receive(iot_os_queue* queue_handle, void * data, unsigned int wait_time_ms);
+int iot_os_queue_receive(iot_os_queue* queue_handle, void ** data, unsigned int wait_time_ms);
 
 /**
  * @brief	create eventgroup
@@ -401,6 +410,10 @@ static inline void *iot_os_malloc(size_t size) { return malloc(size); }
 static inline void *iot_os_calloc(size_t nmemb, size_t size) { return calloc(nmemb, size); }
 static inline void iot_os_free(void *ptr) { return free(ptr); }
 static inline char *iot_os_strdup(const char *src) { return strdup(src); }
+#endif
+
+#ifdef  __cplusplus
+}
 #endif
 
 #endif /* _IOT_OS_UTIL_H_ */

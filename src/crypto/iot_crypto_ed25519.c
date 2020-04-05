@@ -149,7 +149,7 @@ iot_error_t iot_crypto_ed25519_convert_seckey(unsigned char *ed25519_key,
 	return IOT_ERROR_NONE;
 }
 
-#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_ED25519)
+//#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_ED25519)
 static iot_error_t _iot_crypto_pk_ed25519_sign(iot_crypto_pk_context_t *ctx,
                                           unsigned char *input, size_t ilen,
                                           unsigned char *sig, size_t *slen)
@@ -232,4 +232,4 @@ const iot_crypto_pk_funcs_t iot_crypto_pk_ed25519_funcs = {
 	.verify = NULL,
 #endif
 };
-#endif
+//#endif

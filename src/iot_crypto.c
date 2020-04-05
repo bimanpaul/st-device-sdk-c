@@ -36,18 +36,18 @@ iot_error_t iot_crypto_pk_init(iot_crypto_pk_context_t *ctx,
 	}
 
 	ctx->info = info;
-
+	IOT_ERROR("info->type = %d", info->type);
 	switch (info->type) {
 #if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_RSA)
 	case IOT_CRYPTO_PK_RSA:
 		ctx->fn = &iot_crypto_pk_rsa_funcs;
 		break;
 #endif
-#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_ED25519)
+//#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_ED25519)
 	case IOT_CRYPTO_PK_ED25519:
 		ctx->fn = &iot_crypto_pk_ed25519_funcs;
 		break;
-#endif
+//#endif
 	default:
 		IOT_ERROR("not supported pk type (%d)", info->type);
 		return IOT_ERROR_CRYPTO_PK_UNKNOWN_KEYTYPE;

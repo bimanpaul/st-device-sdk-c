@@ -45,7 +45,7 @@ static iot_error_t _iot_es_pk_load_rsa(iot_crypto_pk_info_t *pk_info)
 }
 #endif
 
-#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_ED25519)
+//#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_ED25519)
 static iot_error_t _iot_es_pk_load_ed25519(iot_crypto_pk_info_t *pk_info)
 {
 	iot_error_t err;
@@ -116,7 +116,7 @@ exit:
 
 	return err;
 }
-#endif
+//#endif
 
 void iot_es_crypto_init_pk(iot_crypto_pk_info_t *pk_info, iot_crypto_pk_type_t type)
 {
@@ -134,17 +134,18 @@ iot_error_t iot_es_crypto_load_pk(iot_crypto_pk_info_t *pk_info)
 	if (pk_info == NULL)
 		return IOT_ERROR_INVALID_ARGS;
 
+	IOT_ERROR("pk_info->type = %d", pk_info->type);
 	switch(pk_info->type) {
 #if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_RSA)
 	case IOT_CRYPTO_PK_RSA:
 		err = _iot_es_pk_load_rsa(pk_info);
 		break;
 #endif
-#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_ED25519)
+//#if defined(CONFIG_STDK_IOT_CORE_CRYPTO_SUPPORT_ED25519)
 	case IOT_CRYPTO_PK_ED25519:
 		err = _iot_es_pk_load_ed25519(pk_info);
 		break;
-#endif
+//#endif
 	default:
 		IOT_ERROR("pk type (%d) is not supported", pk_info->type);
 		err = IOT_ERROR_CRYPTO_PK_UNKNOWN_KEYTYPE;

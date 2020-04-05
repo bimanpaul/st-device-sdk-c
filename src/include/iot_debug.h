@@ -50,59 +50,60 @@ typedef enum {
 
 extern void iot_bsp_debug(iot_debug_level_t level, const char* tag, const char* fmt, ...);
 extern void iot_bsp_debug_check_heap(const char* tag, const char* func, const int line, const char* fmt, ...);
-#if defined(CONFIG_STDK_IOT_CORE_EASYSETUP_HTTP_LOG_SUPPORT)
+//#if defined(CONFIG_STDK_IOT_CORE_EASYSETUP_HTTP_LOG_SUPPORT)
 extern void iot_debug_save_log(char* buf);
 extern char *iot_debug_get_log(void);
-#endif
+//#endif
 /**
  * @brief Error level logging macro.
  *
  * Macro to use log function
  */
-#if defined(CONFIG_STDK_IOT_CORE_LOG_LEVEL_ERROR)
-#define IOT_ERROR(fmt, args...) iot_bsp_debug(IOT_DEBUG_LEVEL_ERROR, IOT_DEBUG_PREFIX, "%s(%d) > "fmt, __FUNCTION__, __LINE__, ##args)
-#else
-#define IOT_ERROR(fmt, args...)
-#endif
+//#if defined(CONFIG_STDK_IOT_CORE_LOG_LEVEL_ERROR)
+#define IOT_ERROR(fmt, args...) iot_bsp_debug(IOT_DEBUG_LEVEL_ERROR, IOT_DEBUG_PREFIX, "%s(%d) > " fmt, __FUNCTION__, __LINE__, ##args)
+//#else
+//#define IOT_ERROR(fmt, args...)
+//#endif
 
 /**
  * @brief Warning level logging macro.
  *
  * Macro to use log function
  */
-#if defined(CONFIG_STDK_IOT_CORE_LOG_LEVEL_WARN)
-#define IOT_WARN(fmt, args...) iot_bsp_debug(IOT_DEBUG_LEVEL_WARN, IOT_DEBUG_PREFIX, "%s(%d) > "fmt, __FUNCTION__, __LINE__, ##args)
-#else
-#define IOT_WARN(fmt, args...)
-#endif
+//#if defined(CONFIG_STDK_IOT_CORE_LOG_LEVEL_WARN)
+#define IOT_WARN(fmt, args...) iot_bsp_debug(IOT_DEBUG_LEVEL_WARN, IOT_DEBUG_PREFIX, "%s(%d) > " fmt, __FUNCTION__, __LINE__, ##args)
+//#else
+//#define IOT_WARN(fmt, args...)
+//#endif
 
 /**
  * @brief Info level logging macro.
  *
  * Macro to use log function
  */
-#if defined(CONFIG_STDK_IOT_CORE_LOG_LEVEL_INFO)
-#define IOT_INFO(fmt, args...) iot_bsp_debug(IOT_DEBUG_LEVEL_INFO, IOT_DEBUG_PREFIX, "%s(%d) > "fmt, __FUNCTION__, __LINE__, ##args)
-#else
-#define IOT_INFO(fmt, args...)
-#endif
+//#if defined(CONFIG_STDK_IOT_CORE_LOG_LEVEL_INFO)
+#define IOT_INFO(fmt, args...) iot_bsp_debug(IOT_DEBUG_LEVEL_INFO, IOT_DEBUG_PREFIX, "%s(%d) > " fmt, __FUNCTION__, __LINE__, ##args)
+//#else
+//#define IOT_INFO(fmt, args...)
+//#endif
 
 /**
  * @brief Debug level logging macro.
  *
  * Macro to use log function
  */
-#if defined(CONFIG_STDK_IOT_CORE_LOG_LEVEL_DEBUG)
-#define IOT_DEBUG(fmt, args...) iot_bsp_debug(IOT_DEBUG_LEVEL_DEBUG, IOT_DEBUG_PREFIX, "%s(%d) > "fmt, __FUNCTION__, __LINE__, ##args)
+//#if defined(CONFIG_STDK_IOT_CORE_LOG_LEVEL_DEBUG)
+#define IOT_DEBUG(fmt, args...) iot_bsp_debug(IOT_DEBUG_LEVEL_DEBUG, IOT_DEBUG_PREFIX, "%s(%d) > " fmt, __FUNCTION__, __LINE__, ##args)
+//#define IOT_DEBUG(fmt, args...)
 #define HIT() iot_bsp_debug(IOT_DEBUG_LEVEL_DEBUG, IOT_DEBUG_PREFIX, "%s(%d) > " COLOR_CYAN ">>>HIT<<<" COLOR_END, __FUNCTION__, __LINE__)
 #define ENTER() iot_bsp_debug(IOT_DEBUG_LEVEL_DEBUG, IOT_DEBUG_PREFIX, "%s(%d) > " COLOR_CYAN "ENTER >>>>" COLOR_END, __FUNCTION__, __LINE__)
 #define LEAVE() iot_bsp_debug(IOT_DEBUG_LEVEL_DEBUG, IOT_DEBUG_PREFIX, "%s(%d) > " COLOR_CYAN "LEAVE <<<<" COLOR_END, __FUNCTION__, __LINE__)
-#else
-#define IOT_DEBUG(fmt, args...)
-#define HIT()
-#define ENTER()
-#define LEAVE()
-#endif
+//#else
+//#define IOT_DEBUG(fmt, args...)
+//#define HIT()
+//#define ENTER()
+//#define LEAVE()
+//#endif
 
 
 /**
@@ -110,11 +111,11 @@ extern char *iot_debug_get_log(void);
  *
  * Macro to check memory(heap)
  */
-#if defined(CONFIG_STDK_DEBUG_MEMORY_CHECK)
+//#if defined(CONFIG_STDK_DEBUG_MEMORY_CHECK)
 #define IOT_MEM_CHECK(fmt, args...) iot_bsp_debug_check_heap(IOT_DEBUG_PREFIX, __FUNCTION__, __LINE__, fmt, ##args)
-#else
-#define IOT_MEM_CHECK(fmt, args...)
-#endif
+//#else
+//#define IOT_MEM_CHECK(fmt, args...)
+//#endif
 /**
  * @brief Condition checking macro.
  *
